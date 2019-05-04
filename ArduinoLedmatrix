@@ -21,3 +21,17 @@ void write(byte data) {
   shiftOut(serialInputPin, shiftClockPin, LSBFIRST, data);
   digitalWrite(latchClockPin, HIGH);
 }
+
+void loop() {
+  // spreekt elke rij aan
+  int rijbits = 0x80;
+  for(int rij=0; rij<8; rij++) {
+    for(int k=0; k<8; k++) 
+      digitalWrite(Pins[k],HIGH); // Cleanup kolom
+    write(rijbits); // klaarmaken om de rij te schrijven
+    for(int kolom=0; kolom<8; kolom++)
+      digitalWrite(Pins[7-kolom], character[rij] & 1 << kolom ? LOW : HIGH);
+    delay(1);
+    write(0);
+    rijbits >>= 1; 
+  } 
