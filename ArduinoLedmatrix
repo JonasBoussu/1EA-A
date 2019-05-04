@@ -15,3 +15,9 @@ void setup() {
   pinMode(latchClockPin, OUTPUT);
   Serial.begin(9600);
 }
+
+void write(byte data) {
+  digitalWrite(latchClockPin, LOW);
+  shiftOut(serialInputPin, shiftClockPin, LSBFIRST, data);
+  digitalWrite(latchClockPin, HIGH);
+}
