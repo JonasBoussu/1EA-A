@@ -6,3 +6,40 @@
 typedef uint32_t DWORD; 
 typedef int32_t  LONG; 
 typedef uint16_t WORD;
+
+#pragma pack(push, 1)
+	typedef struct SaveRGBTemporary 
+	{
+		unsigned char tempRGB;
+	}RGBSAVE;
+	#pragma pack(pop)
+	
+//Saved Fileheader
+#pragma pack(push, 1)
+typedef struct BMPHeader
+{
+	WORD hType; 	//Soort Bestand
+	DWORD hSize; 	//De grootte van het bestand
+	WORD hZero; 	
+	WORD hZero2;	
+	DWORD hOffset;	
+}HEADER;
+#pragma pack(pop)
+
+// saved infoheader
+#pragma pack(push, 1) //Disable padding
+typedef struct INFOHeader
+{
+	DWORD iSize;		//Struct grootte (byte)
+	LONG iWidth;		//Bitmap breedte (pixel)
+	LONG iHeight;		//Bitmap hoogte (pixel)
+	WORD iColorPlane;	//Hoeveelheid Kleuren (1)
+	WORD iBits;			//Hoeveelheid Bits per pixel
+	DWORD iCompress;	//Soort compression
+	DWORD iImageSize;	//groote van de image (byte)
+	LONG iPPMX;			//X axis pixels per meter
+	LONG iPPMY;			//Y axis pixels per meter
+	DWORD iColors;		//Hoeveelheid kleuren gebruikt in een bitmap
+	DWORD iColorsImp;	//Hoeveelheid 'belangrijke' kleuren.
+}INFOHEADER;
+#pragma pack(pop)
