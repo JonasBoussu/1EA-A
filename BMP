@@ -43,3 +43,36 @@ typedef struct INFOHeader
 	DWORD iColorsImp;	//Hoeveelheid 'belangrijke' kleuren.
 }INFOHEADER;
 #pragma pack(pop)
+
+int main()
+{
+	FILE *filePointerIn = NULL;
+	
+	filePointerIn = fopen("input.bmp", "rb"); //Open input file as read-only (binary)
+	if(filePointerIn == NULL)
+	{
+			printf("Kan bestand niet openen\n");
+			exit(EXIT_FAILURE);
+			return 0;
+	}
+	else
+	{
+			
+	}
+	
+	FILE *filePointerOut = NULL;
+	
+	filePointerOut = fopen("output.bmp", "wb"); //Open/create output file as writable (binary)
+	if(filePointerOut == NULL)
+	{
+		printf("Kan bestand niet aanmaken\n");
+		exit(EXIT_FAILURE);
+		return 0;
+	}
+	else
+	{
+		
+	}
+	
+	 return 0;
+	}
