@@ -74,5 +74,28 @@ int main()
 		
 	}
 	
-	 return 0;
+	HEADER headFile;
+	INFOHEADER infoHead;
+	
+	
+	fread(&headFile, sizeof(headFile), 1, filePointerIn);
+	fwrite(&headFile, sizeof(headFile), 1, filePointerOut);
+	fread(&infoHead, sizeof(infoHead), 1, filePointerIn);
+	fwrite(&infoHead, sizeof(infoHead), 1, filePointerOut);
+	
+	RGBSAVE saveVariable;
+	
+	unsigned char testClause = 0; //Variable to check error at end of file to stop loop
+	do
+	{
+		testClause = fread(&saveVariable.tempRGB, 1, 1, filePointerIn); //Read value
+		saveVariable.tempRGB = saveVariable.tempRGB ^ 0xFF; //Invert value
+		fwrite(&saveVariable.tempRGB, 1, 1, filePointerOut); //Write value
+	} while(testClause == 1);
+	
+	
+	fclose(filePointerIn);
+	fclose(filePointerOut);
+	
+	return 0;
 	}
